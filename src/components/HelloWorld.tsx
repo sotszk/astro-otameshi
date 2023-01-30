@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
-export default ({ name = 'World' }) => {
+import Styles from '../styles/hello-world.module.scss';
+
+export default ({ name = 'World' }: { name: string }) => {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <h1>Hello, {name}!</h1>
+      <h1 className={Styles.heading}>Hello, {name}!</h1>
       <div>
         <input type="text" onChange={() => {
           console.log('?');

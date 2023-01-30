@@ -1,18 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import HelloWorld from '../components/HelloWorld.jsx';
+import HelloWorld from '../components/HelloWorld.tsx';
+
+import '../styles/global.scss';
 ---
 
 <Layout title="About Astro">
   <main>
-    <h1>About Astro</h1>
+    <h1>About Astro <i>▶</i></h1>
     <Nav />
     <HelloWorld name="React Component" client:load />
   </main>
 </Layout>
 
-<style>
+<style lang="scss">
 	main {
 		margin: auto;
 		padding: 1.5rem;
@@ -22,5 +24,15 @@ import HelloWorld from '../components/HelloWorld.jsx';
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
+    color: transparent;
+    background-image: linear-gradient(
+    90deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 80%
+  );
+    background-clip: text;
+    > i {
+      color: aqua;
+    }
 	}
 </style>
