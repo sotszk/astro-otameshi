@@ -1,5 +1,10 @@
 :root {
-  --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 80%);
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--accent)),
+    #da62c4 30%,
+    white 80%
+  );
 }
 
 .heading {
