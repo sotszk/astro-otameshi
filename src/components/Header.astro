@@ -1,0 +1,31 @@
+---
+import { Image } from "@astrojs/image/components";
+import Nav from "./Nav.astro";
+---
+
+<header>
+  <div class="inner">
+    <!-- Image コンポーネントは alt, width, height 必須 -->
+    <!-- aspectRatio は、、、どう使えばいいかわからん -->
+    <a href="/" class="hidden"
+      ><Image src="/images/neko.png" alt="お猫さま" width={45} height={45} /></a
+    >
+    <a href="/">
+      <img src="/images/logo.svg" alt="suzuki sosaku" width="60" />
+    </a>
+    <Nav />
+  </div>
+</header>
+
+<style>
+  .hidden {
+    display: none;
+  }
+  .inner {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+</style>
