@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Styles from "@styles/hello-world.module.scss";
+import Styles from '@styles/hello-world.module.scss';
+
+const place = import.meta.env.PUBLIC_PLACE;
 
 export default ({ name = "World" }: { name: string }) => {
   const [count, setCount] = useState(1);
@@ -8,6 +10,7 @@ export default ({ name = "World" }: { name: string }) => {
   return (
     <>
       <h1 className={Styles.heading}>Hello, {name}!</h1>
+      <p>Public Place: {place ? place : "設定されていません"}</p>
       <div>
         <input
           type="text"
