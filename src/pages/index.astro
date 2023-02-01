@@ -3,12 +3,23 @@ import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
 
 import "@styles/global.scss";
+
+// 静的ファイルのエンドポイントにアクセス
+const response = await fetch("http://localhost:3000/data.json");
+const data = await response.json();
 ---
 
 <Layout title="Welcome to Astro.">
   {/* 明示的に slot name を指定する */}
   <main slot="default">
     <h1>Welcome to <span class="text-gradient">Astro</span></h1>
+    {
+      data && (
+        <p>
+          <code>{JSON.stringify(data)}</code>
+        </p>
+      )
+    }
     <p class="instructions">
       To get started, open the directory <code>src/pages</code> in your project.<br
       />
