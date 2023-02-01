@@ -1,21 +1,49 @@
 ---
 import { Image } from "@astrojs/image/components";
 import Nav from "./Nav.astro";
+
+export interface Props {
+  logoSize?: number;
+}
+
+// プロパティは HTML ブロックで Astro.props[key] でも利用可能
+// ここでもデフォルト値の指定が可能
+// const { logoSize = 60 } = Astro.props;
+
+// 動的なタグも使用できる。使い所があるかはわからない。
+// この場合ディレクティブはサポートされていない (client:visible とか)
+const TagName = "header"; // <TagName/> は <div/> として処理される
+
+// Fragment は不要
+// <></>
+// あと全体を div で囲む必要もない
+// 必要なときには <Fragment> または <> が使用可能とのこと
 ---
 
-<header>
+<TagName>
   <div class="inner">
     <!-- Image コンポーネントは alt, width, height 必須 -->
     <!-- aspectRatio は、、、どう使えばいいかわからん -->
     <a href="/" class="hidden"
       ><Image src="/images/neko.png" alt="お猫さま" width={45} height={45} /></a
     >
-    <a href="/">
-      <img src="/images/logo.svg" alt="suzuki sosaku" width="60" />
+
+    <!-- class:list ディレクティブは地味に便利だ。join() とかしなくてもいい。 -->
+    <!-- 特にユーティリティファーストのCSSライブラリ、TailwindCSS を使う場合などに便利そう。 -->
+    <a
+      id="logo"
+      class:list={["logo", "logo--linked", { "logo--large": false }]}
+      href="/"
+    >
+      <img
+        src="/images/logo.svg"
+        alt="suzuki sosaku"
+        width={Astro.props.logoSize || 60}
+      />
     </a>
     <Nav />
   </div>
-</header>
+</TagName>
 
 <style>
   .hidden {
@@ -23,9 +51,19 @@ import Nav from "./Nav.astro";
   }
   .inner {
     display: flex;
-    align-items: center;
     margin: auto;
     padding: 1.5rem;
     max-width: 60ch;
   }
 </style>
+
+<script>
+  // lang="ts" とかは不要で、デフォルトで TypeScript に対応しているようだ
+
+  const handleClickLogo = (evt: MouseEvent) => {
+    console.log("logo is clicked");
+    evt.preventDefault();
+  };
+
+  document.getElementById("logo").addEventListener("click", handleClickLogo);
+</script>

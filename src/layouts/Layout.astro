@@ -1,5 +1,6 @@
 ---
 import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 
 export interface Props {
   title: string;
@@ -21,13 +22,22 @@ const fontFamily = "system-ui, sans-serif";
     <title>{title}</title>
   </head>
   <body>
-    <Header />
-    <slot />
+    <Header logoSize={40} />
+    {/* 名前付き slot もサポートしているぞ */}
+    <div class="contents">
+      <slot />
+    </div>
+
+    <div class="inner">
+      <!-- slot の子要素は代替コンテンツになる -->
+      <slot name="additional">Additional なコンテンツ</slot>
+    </div>
+    <Footer />
   </body>
 </html>
 
-<style is:global define:vars={{ fontFamily }}>
-  :root {
+<style define:vars={{ fontFamily }}>
+  :global(:root) {
     --accent: 124, 58, 237;
     --accent-gradient: linear-gradient(
       45deg,
@@ -36,12 +46,25 @@ const fontFamily = "system-ui, sans-serif";
       white 60%
     );
   }
-  html {
+  :global(html) {
     font-family: var(--fontFamily);
     background-color: #f6f6f6;
   }
-  code {
+  :global(body) {
+    margin: 0;
+  }
+  :global(code) {
     font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
       DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+  .inner {
+    display: flex;
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+  /* :global でローカルスコープの中にグローバルスコープを混在させることが可能 */
+  .contents :global(h1) {
+    text-decoration: underline;
   }
 </style>

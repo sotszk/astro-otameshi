@@ -1,15 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
-import Nav from "@components/Nav.astro";
 
 import "@styles/global.scss";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
+  {/* 明示的に slot name を指定する */}
+  <main slot="default">
     <h1>Welcome to <span class="text-gradient">Astro</span></h1>
-    <Nav />
     <p class="instructions">
       To get started, open the directory <code>src/pages</code> in your project.<br
       />
@@ -38,6 +37,8 @@ import "@styles/global.scss";
       />
     </ul>
   </main>
+
+  <div slot="additional">追加希望なコンテンツ</div>
 </Layout>
 
 <style>

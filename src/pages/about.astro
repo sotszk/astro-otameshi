@@ -1,6 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Nav from "@components/Nav.astro";
 import HelloWorld from "@components/HelloWorld";
 
 import "@styles/global.scss";
@@ -8,8 +7,9 @@ import "@styles/global.scss";
 
 <Layout title="About Astro">
   <main>
-    <h1>About Astro <i>▶</i></h1>
-    <Nav />
+    <h1>About Astro<i>▶</i></h1>
+    <p class="typed"></p>
+    <button id="typing">タイプする</button>
     <HelloWorld name="React Component" client:load />
   </main>
 </Layout>
@@ -36,3 +36,20 @@ import "@styles/global.scss";
     }
   }
 </style>
+
+<script>
+  import Typed from "typed.js";
+
+  // 外部ライブラリも読み込み可能
+  document.getElementById("typing").addEventListener("click", (evt) => {
+    new Typed(".typed", {
+      strings: ["Hi, ", "わたしは", "アストロだよ"],
+      typeSpeed: 40,
+      showCursor: false,
+      onComplete: () => {
+        console.log("typed DONE");
+      },
+    });
+    evt.preventDefault();
+  });
+</script>

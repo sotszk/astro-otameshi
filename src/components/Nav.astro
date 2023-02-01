@@ -1,7 +1,42 @@
+---
+const items: { name: string; path: string }[] = [
+  {
+    name: "HOME",
+    path: "/",
+  },
+  {
+    name: "ABOUT",
+    path: "/about",
+  },
+  {
+    name: "CONTACT",
+    path: "/contact",
+  },
+  {
+    name: "PRIVACY",
+    path: "/privacy",
+  },
+];
+---
+
 <nav>
   <ul>
-    <li><a href="/">HOME</a></li>
-    <li><a href="/about">ABOUT</a></li>
-    <li><a href="/contact">CONTACT</a></li>
+    <!-- map 使うのに key は不要っぽい？ -->
+    {
+      items.map((item) => (
+        <li>
+          <a href={item.path}>{item.name}</a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
+
+<style lang="scss">
+  ul {
+    margin: 0;
+    display: flex;
+    list-style: none;
+    gap: 16px;
+  }
+</style>
