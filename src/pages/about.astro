@@ -8,8 +8,8 @@ import "@styles/global.scss";
 <Layout title="About Astro">
   <main>
     <h1>About Astro<i>▶</i></h1>
-    <p class="typed"></p>
-    <button id="typing">タイプする</button>
+    <astro-typed-hello></astro-typed-hello>
+    <!-- <button id="typing">タイプする</button> -->
     <HelloWorld name="React Component" client:load />
   </main>
 </Layout>
@@ -38,18 +38,34 @@ import "@styles/global.scss";
 </style>
 
 <script>
+  // 外部ライブラリも読み込み可能
   import Typed from "typed.js";
 
-  // 外部ライブラリも読み込み可能
-  document.getElementById("typing").addEventListener("click", (evt) => {
-    new Typed(".typed", {
-      strings: ["Hi, ", "わたしは", "アストロだよ"],
-      typeSpeed: 40,
-      showCursor: false,
-      onComplete: () => {
-        console.log("typed DONE");
-      },
-    });
-    evt.preventDefault();
-  });
+  // document.getElementById("typing").addEventListener("click", (evt) => {
+  //   new Typed(".typed", {
+  //     strings: ["Hi, ", "わたしは", "アストロだよ"],
+  //     typeSpeed: 40,
+  //     showCursor: false,
+  //     onComplete: () => {
+  //       console.log("typed DONE");
+  //     },
+  //   });
+  //   evt.preventDefault();
+  // });
+
+  // Web コンポーネントを登録して使うパターン
+  class AstroTypedHello extends HTMLElement {
+    constructor() {
+      super();
+
+      new Typed(this, {
+        strings: ["Hi, ", "わたしは", "アストロだよ"],
+        typeSpeed: 40,
+        onComplete: () => {
+          console.log("typed DONE");
+        },
+      });
+    }
+  }
+  customElements.define("astro-typed-hello", AstroTypedHello);
 </script>
