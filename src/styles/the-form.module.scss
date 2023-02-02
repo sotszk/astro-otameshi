@@ -1,42 +1,10 @@
----
-import Layout from "@layouts/Layout.astro";
-import TheForm from "@components/TheForm"; // jsx も tsx 同様、拡張子いらないようだ
-
-import "@styles/global.scss";
----
-
-<Layout title="Contact me">
-  <main>
-    <h1>お問い合わせ</h1>
-    <TheForm />
-
-    <div>
-      <p>from .astro↓</p>
-      <div class="bg">
-        <button class="button button-glow button-semitransparent"
-          >送信する</button
-        >
-      </div>
-    </div>
-  </main>
-</Layout>
-
-<style lang="scss">
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .bg {
+:root {
+  .form {
     background-color: #1d1e22;
     padding: 1rem;
     color: white;
   }
+
   .button {
     --primary-color: 111, 76, 255;
     --text-color: 256, 256, 256;
@@ -47,6 +15,13 @@ import "@styles/global.scss";
     border-radius: 50px;
     transition: all 0.3s ease;
   }
+
+  .button-primary {
+    background-color: rgb(var(--primary-color));
+    border: 1px solid rgb(var(--primary-color));
+    color: rgb(var(--text-color));
+  }
+
   .button-semitransparent {
     background-color: rgba(var(--primary-color), 0.15);
     border: 1px solid rgba(var(--primary-color), 0.25);
@@ -57,9 +32,24 @@ import "@styles/global.scss";
       color: rgba(var(--text-color), 0.9);
     }
   }
+
   .button-glow {
     &:hover {
       box-shadow: rgba(var(--primary-color), 0.5) 0 0 20px 0;
     }
   }
-</style>
+
+  .button-gradient-border {
+    color: rgba(var(--text-color));
+    border: 2px double transparent;
+    background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+      radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+    background-origin: border-box;
+    background-clip: padding-box, border-box; // bg-image を2つ指定いるため、こちを2つ指定している
+  }
+  .button-1 {
+    @extend .button;
+    @extend .button-glow;
+    @extend .button-primary;
+  }
+}

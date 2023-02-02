@@ -1,6 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+// どうも css module を react コンポーネントで読み込むようにすると最初はスタイルが反映されない現象が起こってしまう
+// join() してるからか？
+// scss で extend して一つのクラスにまとめてもだめだ
+// なんかデフォルトの css スタイルの優先度に、module のスタイルの優先度が負けていたようだ
+// :root で囲って優先度を上げたら問題なくなった・ω・
+import Styles from "@styles/the-form.module.scss";
+
 export default () => {
   const {
     register,
@@ -17,7 +24,7 @@ export default () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={Styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>
             name
@@ -40,7 +47,29 @@ export default () => {
           </label>
           {errors.email && <div>エラー</div>}
         </div>
-        <button type="submit">送信</button>
+        <button className={Styles["button-1"]} type="submit">
+          送信する
+        </button>
+        <button
+          className={[
+            Styles.button,
+            Styles["button-semitransparent"],
+            Styles["button-glow"],
+          ].join(" ")}
+          type="submit"
+        >
+          送信する
+        </button>
+        <button
+          className={[
+            Styles.button,
+            Styles["button-gradient-border"],
+            Styles["button-glow"],
+          ].join(" ")}
+          type="submit"
+        >
+          送信する
+        </button>
       </form>
     </div>
   );
