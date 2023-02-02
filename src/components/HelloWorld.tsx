@@ -17,7 +17,7 @@ export default ({ name = "World" }: { name: string }) => {
   return (
     <>
       <h1 className={Styles.heading}>Hello, {name}!</h1>
-      <div id="hello-typed"></div>
+      <div className="text-2xl" id="hello-typed"></div>
       <p>Public Place: {place ? place : "設定されていません"}</p>
       <div>
         <input
