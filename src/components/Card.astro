@@ -1,26 +1,36 @@
 ---
 export interface Props {
   title: string;
-  body: string;
-  href: string;
+  body?: string;
+  href?: string;
+  list?: boolean;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, list } = Astro.props;
+
+const Wrapper = list ? "li" : "div";
 ---
 
-<li class="link-card">
-  <a href={href}>
-    <h2>
-      {title}
-      <span>&rarr;</span>
-    </h2>
-    <p>
-      {body}
-    </p>
-  </a>
-</li>
+<Wrapper class:list={["card"].concat(href ? ["is-link"] : [])}>
+  {
+    href ? (
+      <a href={href}>
+        <h2>
+          {title}
+          <span>&rarr;</span>
+        </h2>
+        <p>{body}</p>
+      </a>
+    ) : (
+      <span>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </span>
+    )
+  }
+</Wrapper>
 <style>
-  .link-card {
+  .card {
     list-style: none;
     display: flex;
     padding: 0.15rem;
@@ -30,11 +40,11 @@ const { href, title, body } = Astro.props;
     border-radius: 0.5rem;
     background-position: 100%;
     transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.2),
+      0 1px 4px -2px rgba(0, 0, 0, 0.15);
   }
 
-  .link-card > a {
+  :where(.card > a, .card > span) {
     width: 100%;
     text-decoration: none;
     line-height: 1.4;
@@ -54,10 +64,10 @@ const { href, title, body } = Astro.props;
     margin-bottom: 0;
     color: #444;
   }
-  .link-card:is(:hover, :focus-within) {
+  .card.is-link:is(:hover, :focus-within) {
     background-position: 0;
   }
-  .link-card:is(:hover, :focus-within) h2 {
+  .card.is-link:is(:hover, :focus-within) h2 {
     color: rgb(var(--accent));
   }
 </style>

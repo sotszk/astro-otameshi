@@ -1,0 +1,52 @@
+---
+import Card from "./Card.astro";
+---
+
+<h1>grid-template-area</h1>
+<div class="grid-container">
+  <div class="item item-header">header</div>
+  <div class="item item-main">main</div>
+  <div class="item item-sidebar">sidebar</div>
+  <div class="item item-footer">footer</div>
+</div>
+
+<style is:global>
+  body {
+    background-color: #222;
+    color: white;
+  }
+</style>
+
+<style>
+  .grid-container {
+    outline: aquamarine solid 1px;
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+    grid-template:
+      "header header header header" 100px
+      "sidebar main main main" auto
+      "footer footer footer footer" 200px /
+      150px auto auto auto;
+  }
+  .item {
+    border: 3px solid coral;
+    border-radius: 10px;
+    padding: 16px;
+    display: inline-grid;
+    place-items: center;
+  }
+  :where(.item-header) {
+    grid-area: header;
+  }
+  :where(.item-main) {
+    grid-area: main;
+    height: 600px;
+  }
+  :where(.item-sidebar) {
+    grid-area: sidebar;
+  }
+  :where(.item-footer) {
+    grid-area: footer;
+  }
+</style>

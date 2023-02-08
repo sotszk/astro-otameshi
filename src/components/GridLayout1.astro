@@ -1,0 +1,72 @@
+---
+import Card from "./Card.astro";
+---
+
+<p>grid-template-columns</p>
+<p>grid-(column|row)-(start|end)</p>
+<div class="grid-container">
+  <div class="item">item1</div>
+  <div class="item">item2</div>
+  <div class="item">item3</div>
+  <div class="item">item4</div>
+  <div class="item">item5</div>
+</div>
+
+<style is:global>
+  body {
+    background-color: #222;
+    color: white;
+  }
+</style>
+
+<style>
+  .grid-container {
+    outline: aquamarine solid 1px;
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+
+    /* grid-template-columns: [first] 100px [line2] 100px [line3] auto [line4] 100px [end]; */
+    /* grid-template-rows: [first] 100px [line2] 100px [line3] auto [line4] 100px [end]; */
+    /* 上記のショートハンド */
+    grid-template:
+      [first] 100px [line2] 100px [line3] auto [line4] 100px [end] /
+      [first] 100px [line2] 100px [line3] auto [line4] 100px [end];
+  }
+  .item {
+    height: 100%;
+    border: 3px solid coral;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .item:nth-child(1) {
+    grid-column-start: first;
+    grid-column-end: line3;
+    grid-row-start: first;
+    grid-row-end: line2;
+  }
+  .item:nth-child(2) {
+    grid-column-start: line2;
+    grid-column-end: line4;
+    grid-row-start: line2;
+    grid-row-end: line3;
+  }
+  .item:nth-child(3) {
+    grid-column-start: line3;
+    grid-column-end: end;
+    grid-row-start: line3;
+    grid-row-end: line4;
+  }
+  .item:nth-child(4) {
+    grid-column-start: line4;
+    grid-column-end: end;
+    grid-row-start: first;
+    grid-row-end: end;
+  }
+  .item:nth-child(5) {
+    grid-column-start: first;
+    grid-column-end: line2;
+    grid-row-start: first;
+    grid-row-end: end;
+  }
+</style>

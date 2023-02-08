@@ -1,0 +1,81 @@
+---
+import Nav from "@components/Nav.astro";
+import GridLayout1 from "@components/GridLayout1.astro";
+import GridLayout2 from "@components/GridLayout2.astro";
+import GridLayout3 from "@components/GridLayout3.astro";
+import GridLayout4 from "@components/GridLayout4.astro";
+
+import "@styles/global.scss";
+---
+
+<Nav />
+<div class="container">
+  <GridLayout1 />
+  <GridLayout2 />
+  <GridLayout3 />
+  <GridLayout4 />
+</div>
+
+<style>
+  .container {
+    padding: 20px;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+</style>
+
+<!--
+  Grid Container に適用されるプロパティ
+  - display (grid)
+  - grid-template-columns (横のグリッドを指定)
+  - grid-template-rows (縦のグリッドを指定)
+  - grid-template-areas (グリッドセルごとに名前を指定)
+    - グリッドアイテム側で名前を指定する
+
+  // オートレイアウト系プロパティ
+  - grid-auto-columns
+  - grid-auto-rows
+  - grid-auto-flow
+
+  // 親のグリッドレイアウトをコピー
+  - grid-template-columns: subgrid;
+  - grid-template-rows: subgrid;
+
+  // Masonry
+  - grid-template-columns: repeat(4, 1fr);
+  - grid-template-rows: masonry;
+
+  グリッドアイテム に適用されるプロパティ
+  - grid-column-start
+  - grid-column-end
+  - grid-column (ショートハンド)
+  - grid-row-start
+  - grid-row-end
+  - grid-row (ショートハンド)
+
+  - grid-area
+    - グリッドアイテムに名前を指定する
+
+  - place-items (align-items / justify-items)
+  - place-content (align-content / justify-content)
+ -->
+
+<!--
+  display: grid | inline-grid
+  -->
+
+<!--
+  // 関数
+  - repeat()
+  - minmax()
+
+  // Keyword
+  - auto-fit
+  - auto-fill
+
+  こんな感じでいい感じのレスポンシブグリッドができる・・・らしい
+  grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
+
+  - min-content
+  - max-content
+   -->

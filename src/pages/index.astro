@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card.astro";
+import GridLayout1 from "@components/GridLayout1.astro";
 
 import "@styles/global.scss";
 
@@ -50,6 +51,10 @@ const data = await response.json();
   </main>
 
   <div slot="additional">追加希望なコンテンツ</div>
+
+  <div class="container">
+    <GridLayout1 />
+  </div>
 </Layout>
 
 <style>
@@ -94,5 +99,10 @@ const data = await response.json();
     grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
     gap: 1rem;
     padding: 0;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
   }
 </style>
