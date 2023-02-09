@@ -1,3 +1,5 @@
+@import "open-props/postcss/style";
+
 @font-face {
   font-family: "Zen Maru Gothic";
   font-style: normal;
@@ -31,18 +33,18 @@
 html,
 body {
   min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
   margin: 0;
 }
 
-:root {
-  h1,
-  h2 {
-    font-family: "Zen Maru Gothic", sans-serif;
-    font-weight: bold;
-  }
+h1,
+h2 {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: bold;
 }
+
 code {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;

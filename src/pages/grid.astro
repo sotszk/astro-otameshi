@@ -1,20 +1,21 @@
 ---
-import Nav from "@components/Nav.astro";
 import GridLayout1 from "@components/GridLayout1.astro";
 import GridLayout2 from "@components/GridLayout2.astro";
 import GridLayout3 from "@components/GridLayout3.astro";
 import GridLayout4 from "@components/GridLayout4.astro";
+import Layout from "@layouts/Layout.astro";
 
 import "@styles/global.scss";
 ---
 
-<Nav />
-<div class="container">
-  <GridLayout1 />
-  <GridLayout2 />
-  <GridLayout3 />
-  <GridLayout4 />
-</div>
+<Layout title="GRID">
+  <div class="container">
+    <GridLayout1 />
+    <GridLayout2 />
+    <GridLayout3 />
+    <GridLayout4 />
+  </div>
+</Layout>
 
 <style>
   .container {

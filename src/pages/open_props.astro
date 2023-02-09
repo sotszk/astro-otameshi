@@ -1,0 +1,74 @@
+---
+import "@styles/global.scss";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="OPEN PROPS">
+  <div class="container">
+    <h1 class="heading-lv1">Hello, Open Props</h1>
+    <p>Open Props という CSS フレームワークを使っております。</p>
+    <p>このフレームワークは CSS Variables ベースのフレームワークです。</p>
+    <p>
+      たとえば、余白を設定するときは margin: var(--size-3) のように書きます。
+    </p>
+    <p>
+      クラスベースのフレームワークと違い、コードの記述量はけっこう増えてしまいますが、カスタマイズ性と柔軟性は抜群なんじゃないかなと思いました。
+    </p>
+    <p>自分はわりと好みです。</p>
+    <p>
+      z-index は --layer-{1 - 5} と --layer-important があります。z-index の管理も、これを使えば楽かもしれませんね。
+    </p>
+    <p>
+      また、VSCode の拡張機能を使えば CSS Variables
+      のコード補完をしてくれるので、ストレスなくコードを書けるようになります。オヌヌメ。
+    </p>
+    <div class="card-container">
+      <div class="card">Card & Shadow</div>
+      <div class="card">Card & Shadow</div>
+      <div class="card">Card & Shadow</div>
+      <div class="card">Card & Shadow</div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  p {
+    font-size: var(--font-size-2);
+    line-height: var(--font-lineheight-3);
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px;
+    display: grid;
+    gap: var(--size-4);
+  }
+
+  .heading-lv1 {
+    color: var(--blue-9);
+    text-shadow: 0 1px 0 var(--blue-4);
+    font-size: var(--font-size-6);
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-8);
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* place-items: center; */
+    /* place-content: center; */
+    gap: var(--size-3);
+  }
+
+  .card {
+    box-shadow: var(--shadow-2), var(--shadow-1);
+    /* border-radius: var(--radius-2); */
+    border-radius: var(--radius-round);
+    aspect-ratio: var(--ratio-square);
+    display: inline-grid;
+    /* grid-template-columns: subgrid; */
+    /* place-items: center; */
+    place-content: center;
+  }
+</style>
