@@ -26,7 +26,6 @@
     "typed.js": "^2.0.12"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
     "postcss-preset-env": "^8.0.1",
     "prettier": "^2.8.3",
     "prettier-plugin-astro": "^0.8.0",
