@@ -1,0 +1,61 @@
+---
+import Layout from "@layouts/Layout.astro";
+import "open-props/postcss/style";
+---
+
+<Layout title="POSTCSS">
+  <div class="container">
+    <h1 class="heading-lg"><b>POSTCSS</b> TRY &amp; ERROR</h1>
+  </div>
+
+  <p slot="additional">postcss のプラグイン色々試す</p>
+</Layout>
+
+<style>
+  @import "open-props/media";
+
+  @layer page {
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .heading-lg {
+      color: blue;
+      font-size: var(--font-size-8);
+    }
+
+    :is(.heading-lg > b) {
+      color: coral;
+    }
+
+    :is(.heading-lg):hover {
+      text-decoration: underline;
+    }
+    /* :is(.heading-lg:hover) と同様↑ */
+
+    :where(.heading-lg):hover {
+      /* :where() は詳細度が0になるので上書きできない */
+      text-decoration: dotted;
+    }
+
+    :is(.heading-lg:hover) {
+      /* :is() は引数内でもっとも詳細度の高いセレクタを取るので上書きできる */
+      text-decoration: none;
+    }
+
+    /* postcss-custom-media を使用。かなり便利そうだ。 */
+    /* media-query-ranges も使っている（比較演算子） */
+    @custom-media --modern (width > 800px);
+    @media (--modern) {
+      .heading-lg {
+        color: green;
+      }
+    }
+    @media (--portrait) {
+      .heading-lg {
+        color: red;
+      }
+    }
+  }
+</style>
