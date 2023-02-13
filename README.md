@@ -1,53 +1,48 @@
-# Astro Starter Kit: Basics
+# Astro お試しリポジトリ
+
+[Astro ドキュメント](https://astro.build)
+
+## コマンド
 
 ```
-npm create astro@latest -- --template basics
+# パッケージのインストール
+$ yarn install
+
+# 開発スタート
+$ yarn start
+
+## コードフォーマット（prettier）
+$ yarn prettify
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+## ページ構成
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Index
+  - Tailwind 導入
+- About
+  - 素のJSを書く
+  - [Typed.js](https://github.com/mattboldt/typed.js/) 利用
+- Contact
+  - Mixing Frameworks
+  - React Component を使ってフォームを実装
+- Privacy
+  - [Markdown](https://docs.astro.build/en/guides/markdown-content/) を試してみる
+- Grid
+  - CSS Grid のリハビリ
+- PostCSS
+  - 最近の PostCSS 事情を汲み取る
+- OpenProps
+  - [OpenProps](https://open-props.style) というCSS Variables ベースの CSS フレームワークをお試し。とてもよいものだった。
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+## 導入したライブラリ
+- [Open Props](https://open-props.style)
+- [PostCSS Preset Env](https://github.com/csstools/postcss-preset-env)
+- [TailwindCSS](https://github.com/mattboldt/typed.js/)
 
-## 🚀 Project Structure
+## 所感
 
-Inside of your Astro project, you'll see the following folders and files:
+### 2023.2.13
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+v2 の時点で、周辺のツール（たとえば VSCode Extension, Prettier, ESLint とか）のサポートがだいたいなされていて好印象。  
+Vite を使っているのもあって、開発時のビルドが高速。ただしたまに HMR で CSS まわりのコンパイルエラーでこける（サイド HMR させると解消する。ブラウザリロードではダメ）。  
+あとは、VSCode で `.astro` ファイルを扱う際、`<style>` ブロックで PostCSS のシンタックス（要 Extension）が使えない。特に PostCSS Nesting でシンタックスやプロパティ補完が効かないのが痛い。おとなしく `lang="scss" とするか、`.css` ファイルに CSS を切り出すのが無難かもしれない。
